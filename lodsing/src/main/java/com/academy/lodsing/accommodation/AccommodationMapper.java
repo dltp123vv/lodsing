@@ -8,12 +8,16 @@ import org.apache.ibatis.annotations.Param;
 import com.academy.lodsing.business.Business;
 
 /**
- * 숙박정보 Mapper
+ * 숙박업체정보 Mapper
  * @author 이세훈
  */
 @Mapper
 public interface AccommodationMapper {
-
+	/**
+	 * 숙박 업체 종류 조회
+	 * @return
+	 */
+	List<AccommodationType> getAccommodationTypes();
 	
 	List<Accommodation> findAll(
 			@Param("bucounty") String bucounty);

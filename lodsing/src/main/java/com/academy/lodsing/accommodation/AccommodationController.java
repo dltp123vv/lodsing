@@ -2,13 +2,14 @@ package com.academy.lodsing.accommodation;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.academy.lodsing.business.Business;
@@ -19,7 +20,7 @@ import com.academy.lodsing.review.ReviewMapper;
 import com.academy.lodsing.room.Room;
 import com.academy.lodsing.room.RoomMapper;
 
-@Controller
+@RestController
 @RequestMapping("/acc")
 public class AccommodationController {
 
@@ -35,6 +36,18 @@ public class AccommodationController {
 	
 	@Inject
 	private ReviewMapper reviewMapper ;
+	
+	/**
+	 * 숙박 업체 종류 모두 조회 
+	 * @return
+	 */
+	@GetMapping
+	public Object getAccommodationTypes() {
+		
+		List<AccommodationType> list = accMapper.getAccommodationTypes();
+		
+		return Map.of("list", list);
+	}
 	
 	
 	@GetMapping("/motels")
